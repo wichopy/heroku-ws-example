@@ -46,7 +46,8 @@ wss.on('connection', (ws) => {
         break;
 
       case 'request-tasks-and-users':
-        getTasksAndUsers(data, ws);
+        console.log('inside switch case!')
+          // getTasksAndUsers(data, ws);
         break;
 
       case 'request-tasks':

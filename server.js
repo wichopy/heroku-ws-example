@@ -48,7 +48,8 @@ wss.on('connection', (ws) => {
         break;
 
       case 'request-tasks':
-        getTasks(data, ws);
+        // getTasks(data, ws);
+        console.log('inside my switch case!')
         break;
 
       case 'add-contractor-to-progress-bar':
@@ -64,12 +65,14 @@ wss.on('connection', (ws) => {
         break;
 
       case 'getProjectListforManager':
+        console.log('inside my switch case for get manager name!')
         console.log(`profile email: ${data.email}`)
-        getProjectListforManager(data.email, ws);
+          // getProjectListforManager(data.email, ws);
         break;
 
       case 'counter':
-        counter(data, ws);
+        // counter(data, ws);
+        console.log('inside my switch case for counter!')
         break;
 
       default:

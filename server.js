@@ -4,18 +4,20 @@ const express = require('express');
 const SocketServer = require('ws').Server;
 const path = require('path');
 
-const PORT = process.env.PORT || 3000;
-const INDEX = path.join(__dirname, 'index.html');
+const PORT = process.env.PORT || 3002;
+// const INDEX = path.join(__dirname, 'index.html');
 
 const server = express()
-  .use((req, res) => res.sendFile(INDEX))
+  // .use((req, res) => res.sendFile(INDEX))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 const wss = new SocketServer({ server });
 
 wss.on('connection', (ws) => {
+
   console.log('Client connected');
   ws.on('close', () => console.log('Client disconnected'));
+
   ws.on('message', (data) => {
     data = JSON.parse(data)
       // wss.broadcast(event);
@@ -78,10 +80,6 @@ wss.on('connection', (ws) => {
       default:
         throw new Error("Unknown event type " + data.type)
     }
-    // Set up a callback for when a client closes the socket. This usually means they closed their browser.
-    ws.on('close', (event) => {
-      console.log('Client disconnected');
-    });
   });
 });
 
